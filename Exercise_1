@@ -1,0 +1,36 @@
+import Foundation
+//Get the most commom element in Array
+
+var colorArray = ["red", "green", "green", "black", "blue", "yellow", "red", "green", "yellow", "red", "red", "green", "green", "grey", "purple", "orange", "grey", "blue", "red", "green", "yellow", "orange", "purple", "black", "red", "blue", "green", "orange", "blue", "white", "yellow", "blue", "red", "green", "orange", "purple", "blue", "black"]
+
+
+func getMostCommomColor(array: [String]) -> [String] {
+    var topColors: [String] = []
+    var colorDictionary: [String: Int] = [:]
+    //Step 1
+    /// Iterate through colorArray, if null, add 1 to the specific color dictionary; if not null, add the number of elements + 1
+    for color in array {
+        if let count = colorDictionary[color]{
+            colorDictionary[color] = count + 1
+        }else {
+            colorDictionary[color] = 1
+        }
+    }
+    
+    //Step 2
+    ///Get the highest value inside the dictionary
+    let highestValue = colorDictionary.values.max()
+    
+    //Step 3
+    ///Iterate in colorDictionary to find out which color has the highest value
+    for (color, count) in colorDictionary {
+        if colorDictionary[color] == highestValue{
+            topColors.append(color)
+        }
+    }
+    
+    
+    return topColors
+}
+
+getMostCommomColor(array: colorArray)
